@@ -15,10 +15,10 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     
     if @task.save
-      flash[:sucess] = "Success!"
+      flash[:sucess] = "保存されました！"
       redirect_to task_url(@task)
     else
-      flash.now[:danger] = "Failed!"
+      flash.now[:danger] = "保存されませんでした！"
       render :new
     end
     
@@ -31,10 +31,10 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      flash[:sucess] ="Success!"
+      flash[:sucess] ="更新されました！"
       redirect_to task_url(@task)
     else
-      flash.now[:danger] = "Failed!"
+      flash.now[:danger] = "更新されませんでした！"
       render :edit
     end
   end
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     
-    flash[:sucess] = "Success!"
+    flash[:sucess] = "削除されました！"
     redirect_to tasks_url
   
   end
@@ -51,7 +51,7 @@ class TasksController < ApplicationController
   private 
   
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content,:status)
   end
   
 end
