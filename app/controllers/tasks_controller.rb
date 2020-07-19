@@ -3,11 +3,10 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:destroy, :show, :edit, :update]
   
   def index
-      @tasks = current_user.tasks
+    @tasks = current_user.tasks
   end
   
   def show
-    @task = current_user.tasks.find(params[:id])
   end
  
   def new
@@ -28,11 +27,9 @@ class TasksController < ApplicationController
   end
   
   def edit
-    @task = current_user.tasks.find(params[:id])
   end
   
   def update
-    @task = current_user.tasks.find(params[:id])
     if @task.update(task_params)
       flash[:sucess] ="更新されました！"
       redirect_to task_url(@task)
